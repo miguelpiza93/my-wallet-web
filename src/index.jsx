@@ -2,16 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Provider, ReactReduxContext } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { expenses } from "./reducers/expense/expense.reducer";
 import WalletRoutes from "./routes";
 import { BrowserRouter } from "react-router-dom";
+import store from "./store";
 
-const store = configureStore({
-  reducer: {
-    expenses,
-  },
-});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -9,7 +9,9 @@ const ExpenseHeader = () => {
   return (
     <div>
       <OveralBox />
-      <button onClick={handleRedirectToAddExpense}>Add Expense</button>
+      <button onClick={handleRedirectToAddExpense} aria-label="Add Expense">
+        Add Expense
+      </button>
     </div>
   );
 };

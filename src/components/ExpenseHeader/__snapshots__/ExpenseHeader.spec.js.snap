@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseHeader renders the OveralBox component 1`] = `
+<div>
+  <div>
+    <div>
+      <label>
+        Total Amount: 
+      </label>
+       
+      0
+    </div>
+    <button
+      aria-label="Add Expense"
+    >
+      Add Expense
+    </button>
+  </div>
+</div>
+`;

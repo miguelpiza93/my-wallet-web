@@ -1,8 +1,11 @@
 import { connect } from "react-redux";
 import Expense from "./Expense/Expense";
 import styles from "./ExpenseTable.module.css";
+import { useSelector } from 'react-redux'
+import { getExpenses } from "../../redux/expense/actions/getExpenses.action";
+import { deleteExpense } from "../../redux/expense/actions/deleteExpense.action";
 import { useEffect } from "react";
-import {get, remove } from "../../reducers/connections/expense";
+import { selectExpenses } from "../../redux/expense/expense.selectors";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,35 +13,18 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ExpenseTable = ({ expenses, dispatch }) => {
 
-  useEffect(() => {
-    // Fetch expenses when the component mounts
-    const fetchData = async () => {
-      try {
-        const data = await get();
-        dispatch({
-          type: "RECEIVE_EXPENSES",
-          data,
-        });
-        // Handle success, e.g., update state or show a success message
-      } catch (error) {
-        console.error('Error fetching expenses:', error);
-        // Handle error, e.g., show an error message
-      }
-    };
 
-    fetchData();
-  }, [dispatch]);
+const ExpenseTable = ({dispatch}) => {
+  const expenses = useSelector(selectExpenses);
 
   const onRemove = id => {
-    remove(id)
-    dispatch({
-      type: "DELETE_EXPENSE",
-      id
-    })
+    dispatch(deleteExpense(id));
   }
 
+  useEffect(()=>{
+    dispatch(getExpenses());
+  }, [dispatch])
 
   return (
     <div>

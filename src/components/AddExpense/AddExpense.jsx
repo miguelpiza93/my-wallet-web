@@ -2,28 +2,22 @@ import { useReducer } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import style from "./AddExpense.module.css";
-import {create} from "../../reducers/connections/expense";
+import { createExpense } from "../../redux/expense/actions/createExpense.action";
 
 const INITIAL_STATE = {
   description: "",
   amount: 0,
   category: "food",
 };
-let nextTodoId = 1;
+
 const reducer = (state, payload) => ({ ...state, ...payload });
 
 const AddExpense = ({ dispatch }) => {
   const [state, setState] = useReducer(reducer, INITIAL_STATE);
   const navigate = useNavigate();
 
-  const onAddExpenseClick = () => {
-    create({...state});
-
-    dispatch({
-      type: "ADD_EXPENSE",
-      id: nextTodoId++,
-      ...state,
-    });
+  const onAddExpenseClick = async() => {
+    await dispatch(createExpense({...state}));
     setState(INITIAL_STATE);
     navigate("/");
   };
