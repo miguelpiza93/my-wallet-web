@@ -16,8 +16,8 @@ const AddExpense = ({ dispatch }) => {
   const [state, setState] = useReducer(reducer, INITIAL_STATE);
   const navigate = useNavigate();
 
-  const onAddExpenseClick = async() => {
-    await dispatch(createExpense({...state}));
+  const onAddExpenseClick = async () => {
+    await dispatch(createExpense({ ...state }));
     setState(INITIAL_STATE);
     navigate("/");
   };
@@ -38,6 +38,7 @@ const AddExpense = ({ dispatch }) => {
           value={state.description}
           onChange={handleInputChange}
           required
+          aria-labelledby="description"
         />
       </div>
 
@@ -50,6 +51,7 @@ const AddExpense = ({ dispatch }) => {
           value={state.amount}
           onChange={handleInputChange}
           required
+          aria-labelledby="amount"
         />
       </div>
 
@@ -59,6 +61,7 @@ const AddExpense = ({ dispatch }) => {
           name="category"
           value={state.category}
           onChange={handleInputChange}
+          aria-labelledby="category"
         >
           <option value="food">Food</option>
           <option value="transportation">Transportation</option>
@@ -68,7 +71,9 @@ const AddExpense = ({ dispatch }) => {
         </select>
       </div>
 
-      <button onClick={onAddExpenseClick}>Submit</button>
+      <button onClick={onAddExpenseClick} aria-labelledby="submit">
+        Submit
+      </button>
     </div>
   );
 };

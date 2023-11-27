@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 const OveralBox = ({ totalAmount }) => {
   return (
     <div>
-      <label>Total Amount: </label> {totalAmount}
+      <span>Total Amount:</span>{" "}
+      <span>{totalAmount}</span>
     </div>
   );
 };
